@@ -1,0 +1,13 @@
+<div class="custom-paginator">
+  <button (click)="previousPage()" [disabled]="pageIndex === 0">«</button>
+  <button
+    *ngFor="let page of pages"
+    (click)="changePage(page)"
+    [ngClass]="{ active: page === pageIndex }"
+  >
+    {{ page + 1 }}
+  </button>
+  <button (click)="nextPage()" [disabled]="pageIndex === totalPages - 1">
+    »
+  </button>
+</div>

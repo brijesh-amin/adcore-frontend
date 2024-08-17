@@ -1,0 +1,32 @@
+<div *ngIf="course" class="course-details-container">
+  <h2>Course Details</h2>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>{{ course.coursename }}</mat-card-title>
+      <mat-card-subtitle
+        >{{ course.university }} - {{ course.city }},
+        {{ course.country }}</mat-card-subtitle
+      >
+    </mat-card-header>
+    <mat-card-content>
+      <p><strong>Course Description:</strong> {{ course.coursedescription }}</p>
+      <p><strong>Start Date:</strong> {{ course.startdate | date }}</p>
+      <p><strong>End Date:</strong> {{ course.enddate | date }}</p>
+      <p>
+        <strong>price:</strong> {{ course.price | currency: course.currency }}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button
+        mat-raised-button
+        color="primary"
+        [routerLink]="['/courses/edit', course._id]"
+      >
+        Edit
+      </button>
+      <button mat-raised-button color="warn" (click)="deleteCourse()">
+        Delete
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

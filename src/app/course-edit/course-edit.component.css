@@ -1,0 +1,30 @@
+.course-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* Space between form fields */
+  max-width: 600px; /* Limit the width of the form */
+  margin: 0 auto; /* Center the form horizontally */
+  padding: 16px; /* Add padding around the form */
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end; /* Align the button to the right */
+  margin-top: 16px;
+}
+
+.custom-button {
+  border-radius: 4px; /* Adjust this value to make corners less rounded */
+}
+
+.button-container {
+  display: flex;
+  justify-content: center; /* Center the buttons horizontally */
+  gap: 16px; /* Adjust space between buttons */
+  margin-top: 16px; /* Adjust space above the button container */
+}

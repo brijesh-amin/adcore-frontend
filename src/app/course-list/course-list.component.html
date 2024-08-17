@@ -1,0 +1,108 @@
+<mat-card>
+  <mat-card-content>
+    <div class="toolbar">
+      <button
+        mat-flat-button
+        class="custom-button"
+        color="primary"
+        (click)="onAddNewCourse()"
+      >
+        Add New Course
+      </button>
+      <mat-form-field class="search-field">
+        <mat-label>Search</mat-label>
+        <input
+          matInput
+          (input)="applyFilter($event)"
+          placeholder="Search Courses"
+        />
+      </mat-form-field>
+    </div>
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <!-- Columns definitions -->
+      <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef>Edit</th>
+        <td mat-cell *matCellDef="let course">
+          <button mat-icon-button (click)="editCourse(course)">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef>Delete</th>
+        <td mat-cell *matCellDef="let course">
+          <button mat-icon-button (click)="deleteCourse(course)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="course_name">
+        <th mat-header-cell *matHeaderCellDef>Course Name</th>
+        <td
+          mat-cell
+          *matCellDef="let course"
+          matTooltip="{{ course.coursedescription }}"
+        >
+          {{ course.coursename }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="location">
+        <th mat-header-cell *matHeaderCellDef>Location</th>
+        <td
+          mat-cell
+          *matCellDef="let course"
+          matTooltip="{{ course.coursedescription }}"
+        >
+          {{ course.Location }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="start_date">
+        <th mat-header-cell *matHeaderCellDef>Start</th>
+        <td
+          mat-cell
+          *matCellDef="let course"
+          matTooltip="{{ course.coursedescription }}"
+        >
+          {{ course.startdate | date: "mediumDate" }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="course_length">
+        <th mat-header-cell *matHeaderCellDef>Length</th>
+        <td
+          mat-cell
+          *matCellDef="let course"
+          matTooltip="{{ course.coursedescription }}"
+        >
+          {{ calculateCourseLength(course.startdate, course.enddate) }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef>Price</th>
+        <td
+          mat-cell
+          *matCellDef="let course"
+          matTooltip="{{ course.coursedescription }}"
+        >
+          {{ course.price | currency: course.currency }}
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <app-custom-paginator
+      #paginator
+      [totalCourses]="totalCourses"
+      [pageSize]="pageSize"
+      [pageIndex]="pageIndex"
+      (pageChanged)="onPageChanged($event)"
+    />
+  </mat-card-content>
+</mat-card>

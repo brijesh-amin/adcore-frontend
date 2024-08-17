@@ -1,0 +1,24 @@
+.custom-paginator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-paginator button {
+  margin: 0 5px;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.custom-paginator button.active {
+  font-weight: bold;
+  background-color: #007bff;
+  color: white;
+}
+
+.custom-paginator button:disabled {
+  cursor: not-allowed;
+  color: #aaa;
+}

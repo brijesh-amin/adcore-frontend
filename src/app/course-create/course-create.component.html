@@ -1,0 +1,137 @@
+<form [formGroup]="courseForm" (ngSubmit)="onSubmit()" class="course-form">
+  <div class="form-group">
+    <mat-form-field appearance="fill">
+      <mat-label>Course Name</mat-label>
+      <input matInput formControlName="coursename" />
+      <mat-error *ngIf="courseForm.get('coursename')?.hasError('required')">
+        Course Name is required
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div class="form-group">
+    <mat-form-field appearance="fill">
+      <mat-label>University</mat-label>
+      <mat-select formControlName="university">
+        <mat-option
+          *ngFor="let university of universities"
+          [value]="university"
+        >
+          {{ university }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="courseForm.get('university')?.hasError('required')">
+        University is required
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="form-group">
+    <mat-form-field appearance="fill">
+      <mat-label>Country</mat-label>
+      <mat-select formControlName="country">
+        <mat-option *ngFor="let country of countries" [value]="country">
+          {{ country }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="courseForm.get('country')?.hasError('required')">
+        Country is required
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div class="form-group">
+    <mat-form-field appearance="fill">
+      <mat-label>City</mat-label>
+      <mat-select formControlName="city">
+        <mat-option *ngFor="let city of cities" [value]="city">
+          {{ city }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="courseForm.get('city')?.hasError('required')">
+        city is required
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div class="form-group">
+    <mat-form-field appearance="fill">
+      <mat-label>Price</mat-label>
+      <input matInput formControlName="price" type="number" />
+      <mat-error *ngIf="courseForm.get('price')?.hasError('required')">
+        Price is required
+      </mat-error>
+      <mat-error *ngIf="courseForm.get('price')?.hasError('min')">
+        Price must be a positive number
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="form-group">
+    <mat-form-field appearance="fill">
+      <mat-label>Currency</mat-label>
+      <input matInput formControlName="currency" />
+      <mat-error *ngIf="courseForm.get('currency')?.hasError('required')">
+        Currency is required
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="form-group">
+    <mat-form-field appearance="fill">
+      <mat-label>Start Date</mat-label>
+      <input
+        matInput
+        [matDatepicker]="startDatePicker"
+        formControlName="startdate"
+      />
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="startDatePicker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #startDatePicker></mat-datepicker>
+      <mat-error *ngIf="courseForm.get('startdate')?.hasError('required')">
+        Start Date is required
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="form-group">
+    <mat-form-field appearance="fill">
+      <mat-label>End Date</mat-label>
+      <input
+        matInput
+        [matDatepicker]="endDatePicker"
+        formControlName="enddate"
+      />
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="endDatePicker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #endDatePicker></mat-datepicker>
+      <mat-error *ngIf="courseForm.get('enddate')?.hasError('required')">
+        End Date is required
+      </mat-error>
+    </mat-form-field>
+    <mat-error *ngIf="courseForm.hasError('dateInvalid')">
+      End Date must be after Start Date
+    </mat-error>
+  </div>
+  <div class="form-group">
+    <mat-form-field appearance="fill">
+      <mat-label>Course Description</mat-label>
+      <textarea matInput formControlName="coursedescription"></textarea>
+      <mat-error
+        *ngIf="courseForm.get('coursedescription')?.hasError('required')"
+      >
+        Course Description is required
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="button-container">
+    <button mat-flat-button class="custom-button" color="primary" type="submit">
+      Save
+    </button>
+    <button mat-button class="custom-button" (click)="onCancel()">
+      Cancel
+    </button>
+  </div>
+</form>
